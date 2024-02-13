@@ -1,6 +1,9 @@
 plugins {
       id("com.android.application")
       id("org.jetbrains.kotlin.android")
+      id("kotlin-kapt")
+      id("com.google.devtools.ksp")
+      id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -50,6 +53,10 @@ android {
 }
 
 dependencies {
+      val retrofitVersion = "2.9.0"
+      val hiltVersion = "2.50"
+      val navVersion = "2.7.7"
+      val lifecycleVersion = "2.7.0"
 
       implementation("androidx.core:core-ktx:1.12.0")
       implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -59,6 +66,37 @@ dependencies {
       implementation("androidx.compose.ui:ui-graphics")
       implementation("androidx.compose.ui:ui-tooling-preview")
       implementation("androidx.compose.material3:material3")
+
+      //dagger
+      implementation("com.google.dagger:hilt-android:$hiltVersion")
+      kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+      kapt("androidx.hilt:hilt-compiler:1.1.0")
+      implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+      //Retrofit 2
+      implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+      implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
+      implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+      implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+      //coroutines
+      implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+      //lifecycle
+      // ViewModel
+      implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+      // ViewModel utilities for Compose
+      implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+      implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
+      // LiveData
+      implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+      // Lifecycles only (without ViewModel or LiveData)
+      implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+      // Saved state module for ViewModel
+      implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
+
+      //Navigation
+      implementation ("androidx.navigation:navigation-compose:$navVersion")
+
       testImplementation("junit:junit:4.13.2")
       androidTestImplementation("androidx.test.ext:junit:1.1.5")
       androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -66,4 +104,9 @@ dependencies {
       androidTestImplementation("androidx.compose.ui:ui-test-junit4")
       debugImplementation("androidx.compose.ui:ui-tooling")
       debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+// Allow references to generated code
+kapt {
+      correctErrorTypes = true
 }
