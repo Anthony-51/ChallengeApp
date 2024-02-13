@@ -1,4 +1,4 @@
-package com.alex.challengeapp
+package com.alex.challengeapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.alex.challengeapp.domain.model.NavigationScreen
+import com.alex.challengeapp.presentation.components.MovieNavHost
 import com.alex.challengeapp.ui.theme.ChallengeAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
       override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -22,25 +24,10 @@ class MainActivity : ComponentActivity() {
                               modifier = Modifier.fillMaxSize(),
                               color = MaterialTheme.colorScheme.background
                         ) {
-                              Greeting("Android")
+                              val navController = rememberNavController()
+                              MovieNavHost(navController = navController, startDestination = NavigationScreen.LoginScreen.route)
                         }
                   }
             }
-      }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-      Text(
-            text = "Hello $name!",
-            modifier = modifier
-      )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-      ChallengeAppTheme {
-            Greeting("Android")
       }
 }
