@@ -109,7 +109,12 @@ dependencies {
       ksp("androidx.room:room-compiler:$roomVersion")
       // optional - Kotlin Extensions and Coroutines support for Room
       implementation("androidx.room:room-ktx:$roomVersion")
+      // optional - Paging 3 Integration
+      implementation("androidx.room:room-paging:$roomVersion")
 
+      // Paging
+      implementation ("androidx.paging:paging-runtime-ktx:3.1.1")
+      implementation ("androidx.paging:paging-compose:1.0.0-alpha18")
       testImplementation("junit:junit:4.13.2")
       androidTestImplementation("androidx.test.ext:junit:1.1.5")
       androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

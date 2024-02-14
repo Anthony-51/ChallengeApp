@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,11 +25,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.alex.challengeapp.domain.model.Movie
 import com.alex.challengeapp.presentation.home.components.BottomViewProgress
 import com.alex.challengeapp.presentation.home.components.MovieItem
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import androidx.paging.compose.items
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -39,6 +42,7 @@ fun HomeScreen(
       onNavigateToDetails: (Movie) -> Unit
 ) {
       val state = homeVM.homeState.collectAsState()
+      val elements = homeVM.moviesPager.collectAsLazyPagingItems()
       val listState = rememberLazyListState()
       val isAtBottom by remember {
             derivedStateOf {
@@ -76,30 +80,40 @@ fun HomeScreen(
                   )
             )
             LazyColumn(
-                  modifier = Modifier.weight(1f),
-                  state = listState
+                  modifier = Modifier.weight(1f)
             ) {
-                  items(state.value.movies, key = { it.id }) { movie ->
-                        MovieItem(
-                              modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp)
-                                    .animateItemPlacement(),
-                              movie = movie,
-                              onClick = { homeVM.onEvent(HomeEvent.OnMovieClick(movie)) }
-                        )
+                  items(elements) { movie ->
+                        if (movie != null) {
+                              MovieItem(
+                                    modifier = Modifier
+                                          .fillMaxWidth()
+                                          .padding(8.dp)
+                                          .animateItemPlacement(),
+                                    movie = movie,
+                                    onClick = { homeVM.onEvent(HomeEvent.OnMovieClick(movie)) }
+                              )
+                        }
+                  }
+                  item {
+                        if (elements.loadState.append is LoadState.Loading) {
+                              BottomViewProgress(
+                                    modifier = Modifier
+                                          .fillMaxWidth()
+                                          .padding(vertical = 10.dp)
+                              )
+                        }
                   }
             }
-            AnimatedVisibility (isAtBottom && !state.value.isLastPage) {
-                  BottomViewProgress(
-                        modifier = Modifier
-                              .fillMaxWidth()
-                              .padding(vertical = 10.dp)
-                  )
-                  if (!state.value.isLoading) {
-                        homeVM.onEvent(HomeEvent.OnLoadMoreMovies)
-                  }
-            }
+//            AnimatedVisibility (isAtBottom && !state.value.isLastPage) {
+//                  BottomViewProgress(
+//                        modifier = Modifier
+//                              .fillMaxWidth()
+//                              .padding(vertical = 10.dp)
+//                  )
+//                  if (!state.value.isLoading) {
+//                        homeVM.onEvent(HomeEvent.OnLoadMoreMovies)
+//                  }
+//            }
       }
 }
 

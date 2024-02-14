@@ -2,7 +2,9 @@ package com.alex.challengeapp.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.alex.challengeapp.domain.model.ResourceState
+import com.alex.challengeapp.domain.use_cases.GetMoviesByPager
 import com.alex.challengeapp.domain.use_cases.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -17,16 +19,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getMovies: GetMoviesUseCase
+    private val getMovies: GetMoviesUseCase,
+    private val movies: GetMoviesByPager
 ) : ViewModel() {
     private val _homeState = MutableStateFlow(HomeState())
     val homeState = _homeState.asStateFlow()
+
+    val moviesPager = movies().cachedIn(viewModelScope)
 
     private val _effect: Channel<HomeEffect> = Channel()
     val effect = _effect.receiveAsFlow()
 
     init {
-        getMovies()
+//        getMovies()
     }
 
     fun onEvent(event: HomeEvent){
@@ -61,4 +66,5 @@ class HomeViewModel @Inject constructor(
         }
             .launchIn(viewModelScope)
     }
+
 }

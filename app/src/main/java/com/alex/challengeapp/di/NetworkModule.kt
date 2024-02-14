@@ -1,5 +1,7 @@
 package com.alex.challengeapp.di
 
+import com.alex.challengeapp.data.local.MovieMediator
+import com.alex.challengeapp.data.local.dao.MovieDao
 import com.alex.challengeapp.data.remote.MovieApi
 import com.alex.challengeapp.data.repository.MovieRepositoryImpl
 import com.alex.challengeapp.data.repository.data_source.MovieDataSource
@@ -34,6 +36,6 @@ object NetworkModule {
 
       @Provides
       @Singleton
-      fun provideMovieRepository(dataSource: MovieDataSource): MovieRepository = MovieRepositoryImpl(dataSource)
+      fun provideMovieRepository(dataSource: MovieDataSource, dao: MovieDao, mediator: MovieMediator): MovieRepository = MovieRepositoryImpl(dataSource, dao, mediator)
 
 }
