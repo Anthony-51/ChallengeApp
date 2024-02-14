@@ -1,5 +1,6 @@
 package com.alex.challengeapp.presentation.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import com.alex.challengeapp.presentation.home.components.MovieItem
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     homeVM: HomeViewModel = hiltViewModel(),
@@ -53,14 +55,15 @@ fun HomeScreen(
         Text(
             modifier = Modifier.padding(start = 8.dp),
             text = "Movies",
-            style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.Black)
         )
         LazyColumn {
-            items(state.value.movies) { movie ->
+            items(state.value.movies, key = { it.id }) { movie ->
                 MovieItem(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp),
+                        .padding(8.dp)
+                        .animateItemPlacement(),
                     movie = movie,
                     onClick = { homeVM.onEvent(HomeEvent.OnMovieClick(movie)) }
                 )
