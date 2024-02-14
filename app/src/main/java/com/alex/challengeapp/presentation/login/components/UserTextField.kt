@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun EmailTextField(
+fun UserTextField(
       modifier: Modifier = Modifier,
       value: String,
       onValueChange: (String) -> Unit,
@@ -30,7 +30,7 @@ fun EmailTextField(
                   errorLabelColor = Color.Red
             ),
             keyboardOptions = KeyboardOptions(
-                  keyboardType = KeyboardType.Email,
+                  keyboardType = KeyboardType.Text,
                   imeAction = ImeAction.Next
             ),
             isError = isError
@@ -40,5 +40,5 @@ fun EmailTextField(
 @Preview(showBackground = true)
 @Composable
 fun EmailTextFieldPreview() {
-      EmailTextField(value = "", onValueChange = {}, isError = false)
+      UserTextField(value = "", onValueChange = {}, isError = false)
 }

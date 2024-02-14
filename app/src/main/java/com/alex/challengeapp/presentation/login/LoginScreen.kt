@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.alex.challengeapp.presentation.login.components.EmailTextField
+import com.alex.challengeapp.presentation.login.components.UserTextField
 import com.alex.challengeapp.presentation.login.components.PasswordTextField
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -58,10 +58,10 @@ fun LoginScreen(
                   )
             )
             Spacer(modifier = Modifier.height(32.dp))
-            EmailTextField(
+            UserTextField(
                   modifier = Modifier.fillMaxWidth(),
-                  value = state.value.email,
-                  onValueChange = { loginVM.onEvent(LoginEvent.OnEmailChanged(it)) },
+                  value = state.value.user,
+                  onValueChange = { loginVM.onEvent(LoginEvent.OnUserChanged(it)) },
                   isError = state.value.isError
             )
             PasswordTextField(

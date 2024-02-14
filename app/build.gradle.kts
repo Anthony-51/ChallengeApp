@@ -2,8 +2,10 @@ plugins {
       id("com.android.application")
       id("org.jetbrains.kotlin.android")
       id("kotlin-kapt")
+      id("kotlin-parcelize")
       id("com.google.devtools.ksp")
       id("com.google.dagger.hilt.android")
+      id("kotlinx-serialization")
 }
 
 android {
@@ -76,7 +78,6 @@ dependencies {
       //Retrofit 2
       implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
       implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
-      implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
       implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
       //coroutines
       implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -87,15 +88,21 @@ dependencies {
       // ViewModel utilities for Compose
       implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
       implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
-      // LiveData
-      implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-      // Lifecycles only (without ViewModel or LiveData)
-      implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+//      // LiveData
+//      implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+//      // Lifecycles only (without ViewModel or LiveData)
+//      implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
       // Saved state module for ViewModel
       implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
 
       //Navigation
       implementation ("androidx.navigation:navigation-compose:$navVersion")
+
+      //Coil
+      implementation("io.coil-kt:coil-compose:2.5.0")
+
+      //serialization
+      implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
       testImplementation("junit:junit:4.13.2")
       androidTestImplementation("androidx.test.ext:junit:1.1.5")

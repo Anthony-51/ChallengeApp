@@ -26,9 +26,9 @@ class LoginViewModel @Inject constructor(
 
       fun onEvent(event: LoginEvent) {
             when (event) {
-                  is LoginEvent.OnEmailChanged -> {
+                  is LoginEvent.OnUserChanged -> {
                         _loginState.update {
-                              it.copy(email = event.email, isError = false)
+                              it.copy(user = event.user, isError = false)
                         }
                   }
                   is LoginEvent.OnPasswordChanged -> {
@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(
 
       private fun processUser() {
             viewModelScope.launch {
-                  val validateCredentials = validateCredentials(_loginState.value.email, _loginState.value.password)
+                  val validateCredentials = validateCredentials(_loginState.value.user, _loginState.value.password)
                   if (validateCredentials) {
                         _effect.send(LoginEffect.NavigateToHome)
                         return@launch

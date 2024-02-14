@@ -1,6 +1,9 @@
 package com.alex.challengeapp.di
 
 import com.alex.challengeapp.data.remote.MovieApi
+import com.alex.challengeapp.data.repository.MovieRepositoryImpl
+import com.alex.challengeapp.data.repository.data_source.MovieDataSource
+import com.alex.challengeapp.domain.repository.MovieRepository
 import com.alex.challengeapp.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -28,5 +31,9 @@ object NetworkModule {
       fun provideMovieApi(retrofit: Retrofit): MovieApi {
             return retrofit.create(MovieApi::class.java)
       }
+
+      @Provides
+      @Singleton
+      fun provideMovieRepository(dataSource: MovieDataSource): MovieRepository = MovieRepositoryImpl(dataSource)
 
 }
