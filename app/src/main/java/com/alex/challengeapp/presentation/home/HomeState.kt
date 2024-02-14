@@ -6,5 +6,5 @@ data class HomeState(
     val isLoading: Boolean = false,
     val movies: List<Movie> = emptyList(),
     val currentPage: Int = 1,
-    val totalPages: Int = 0
+    val isLastPage: Boolean = false
 )

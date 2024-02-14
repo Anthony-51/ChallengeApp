@@ -59,6 +59,7 @@ dependencies {
       val hiltVersion = "2.50"
       val navVersion = "2.7.7"
       val lifecycleVersion = "2.7.0"
+      val roomVersion = "2.5.2"
 
       implementation("androidx.core:core-ktx:1.12.0")
       implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -79,6 +80,7 @@ dependencies {
       implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
       implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
       implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
       //coroutines
       implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
@@ -88,10 +90,6 @@ dependencies {
       // ViewModel utilities for Compose
       implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
       implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
-//      // LiveData
-//      implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-//      // Lifecycles only (without ViewModel or LiveData)
-//      implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
       // Saved state module for ViewModel
       implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
 
@@ -103,6 +101,14 @@ dependencies {
 
       //serialization
       implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
+      //Room
+      implementation("androidx.room:room-runtime:$roomVersion")
+      annotationProcessor("androidx.room:room-compiler:$roomVersion")
+      // To use Kotlin Symbol Processing (KSP)
+      ksp("androidx.room:room-compiler:$roomVersion")
+      // optional - Kotlin Extensions and Coroutines support for Room
+      implementation("androidx.room:room-ktx:$roomVersion")
 
       testImplementation("junit:junit:4.13.2")
       androidTestImplementation("androidx.test.ext:junit:1.1.5")

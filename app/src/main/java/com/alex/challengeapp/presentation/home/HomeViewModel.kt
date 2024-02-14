@@ -53,7 +53,7 @@ class HomeViewModel @Inject constructor(
                             isLoading = false,
                             movies = it.movies + result.data.results,
                             currentPage = it.currentPage + 1,
-                            totalPages = result.data.totalPages
+                            isLastPage = it.currentPage >= result.data.totalPages
                         )
                     }
                 }

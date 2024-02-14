@@ -1,25 +1,28 @@
 package com.alex.challengeapp.presentation.home.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
+import com.alex.challengeapp.R
 import com.alex.challengeapp.domain.model.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,14 +35,21 @@ fun MovieItem(
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        onClick = onClick
+        onClick = onClick,
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Row {
-            AsyncImage(
+            SubcomposeAsyncImage(
                 modifier = Modifier.size(width = 150.dp, height = 120.dp),
                 model = movie.backdropPath,
                 contentDescription = "Movie poster",
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                loading = {
+                    CircularProgressIndicator()
+                },
+                error = {
+                    Image(painter = painterResource(id = R.drawable.error_logo), contentDescription = "Error")
+                }
             )
             Column(
                 modifier = Modifier.padding(10.dp)

@@ -5,11 +5,13 @@ import com.alex.challengeapp.data.remote.model.MovieDTO
 import com.alex.challengeapp.util.Constants
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 @Parcelize
 @Serializable
 data class Movie(
-      val id: Int,
+      val id: String = UUID.randomUUID().toString(),
+      val movieId: Int,
       val title: String,
       val overview: String,
       val posterPath: String,
@@ -19,7 +21,7 @@ data class Movie(
 ): Parcelable
 
 fun MovieDTO.toDomain() = Movie(
-      id = id,
+      movieId = id,
       title = title ?: "",
       overview = overview ?: "",
       posterPath = "${Constants.IMAGE_URL}$posterPath",
