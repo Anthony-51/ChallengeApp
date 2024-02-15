@@ -90,7 +90,11 @@ fun MovieNavHost(
                         )
                   }
             ) {
-                  DetailScreen()
+                  DetailScreen(
+                        onNavigateBack = {
+                              navController.navigateUp()
+                        }
+                  )
             }
       }
 }

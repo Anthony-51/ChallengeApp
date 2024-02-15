@@ -19,7 +19,8 @@ import com.alex.challengeapp.presentation.detail.components.VoteAverage
 
 @Composable
 fun DetailScreen(
-    detailVM: DetailViewModel = hiltViewModel()
+    detailVM: DetailViewModel = hiltViewModel(),
+    onNavigateBack: () -> Unit
 ) {
     val state = detailVM.detailState.collectAsState()
     Column(
@@ -33,7 +34,7 @@ fun DetailScreen(
             modifier = Modifier.fillMaxWidth(),
             title = state.value.movie.title,
             imagePath = state.value.movie.posterPath,
-            onBack = {}
+            onBack = onNavigateBack
         )
         ReleaseDate(
             modifier = Modifier.fillMaxWidth(),

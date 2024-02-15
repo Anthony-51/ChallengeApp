@@ -48,7 +48,7 @@ fun MovieItem(
                     CircularProgressIndicator()
                 },
                 error = {
-                    Image(painter = painterResource(id = R.drawable.error_logo), contentDescription = "Error")
+                    Image(painter = painterResource(id = R.drawable.image_not_found), contentDescription = "Error")
                 }
             )
             Column(
