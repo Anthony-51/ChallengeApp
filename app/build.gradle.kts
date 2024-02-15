@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-      testImplementation("junit:junit:4.13.2")
+      testImplementation("junit:junit:4.12")
       val retrofitVersion = "2.9.0"
       val hiltVersion = "2.50"
       val navVersion = "2.7.7"
@@ -128,6 +128,7 @@ dependencies {
       // Optional -- Robolectric environment
       testImplementation ("androidx.test:core:1.5.0")
       // AndroidJUnitRunner and JUnit Rules
+      testImplementation("junit:junit:4.13.2")
       testImplementation ("androidx.test:runner:1.5.2")
       testImplementation ("androidx.test:rules:1.5.0")
       androidTestImplementation ("androidx.test:runner:1.5.2")
@@ -141,6 +142,11 @@ dependencies {
       testImplementation("androidx.test.ext:junit-ktx:1.1.5")
       testImplementation ("androidx.test:core-ktx:1.5.0")
       testImplementation ("org.robolectric:robolectric:4.11.1")
+
+
+      testImplementation("app.cash.turbine:turbine:0.7.0")
+      testImplementation("com.google.truth:truth:1.1.3")
+
       androidTestImplementation("androidx.test.ext:junit:1.1.5")
       androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
       androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))

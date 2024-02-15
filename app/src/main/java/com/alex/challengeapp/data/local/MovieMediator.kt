@@ -51,7 +51,7 @@ class MovieMediator @Inject constructor(
                               db.movieDao().insertAll(movies.map { it.toEntity() })
                         }
                   }
-                  MediatorResult.Success(endOfPaginationReached = response.page == response.totalPages)
+                  MediatorResult.Success(endOfPaginationReached = response.page >= response.totalPages)
             }  catch(e: IOException) {
                   MediatorResult.Error(e)
             } catch(e: HttpException) {

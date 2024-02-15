@@ -22,6 +22,7 @@ data class Movie(
 ): Parcelable
 
 fun MovieDTO.toDomain() = Movie(
+      id = uuid,
       movieId = id,
       title = title ?: "",
       overview = overview ?: "",

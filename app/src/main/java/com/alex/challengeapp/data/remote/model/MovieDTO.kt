@@ -1,8 +1,10 @@
 package com.alex.challengeapp.data.remote.model
 
 import com.google.gson.annotations.SerializedName
+import java.util.UUID
 
 data class MovieDTO(
+      val uuid: String = UUID.randomUUID().toString(),
       @SerializedName("id")
       val id: Int,
       @SerializedName("title")

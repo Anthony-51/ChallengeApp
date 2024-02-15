@@ -6,4 +6,6 @@ interface HomeEvent {
     object OnLoadMoreMovies : HomeEvent
 
     data class OnMovieClick(val movie: Movie) : HomeEvent
+
+    data class OnError(val message: String) : HomeEvent
 }

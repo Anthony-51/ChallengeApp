@@ -42,6 +42,9 @@ class HomeViewModel @Inject constructor(
                     _effect.send(HomeEffect.NavigateToDetails(event.movie))
                 }
             }
+            is HomeEvent.OnError -> viewModelScope.launch {
+                _effect.send(HomeEffect.ShowToast(event.message))
+            }
         }
     }
 
