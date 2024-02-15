@@ -1,10 +1,8 @@
 package com.alex.challengeapp.domain.use_cases
 
-import androidx.paging.cachedIn
 import androidx.paging.map
 import com.alex.challengeapp.domain.model.toDomain
 import com.alex.challengeapp.domain.repository.MovieRepository
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

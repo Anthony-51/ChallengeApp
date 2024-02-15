@@ -55,6 +55,7 @@ android {
 }
 
 dependencies {
+      testImplementation("junit:junit:4.13.2")
       val retrofitVersion = "2.9.0"
       val hiltVersion = "2.50"
       val navVersion = "2.7.7"
@@ -116,7 +117,30 @@ dependencies {
       implementation ("androidx.paging:paging-runtime-ktx:3.1.1")
       implementation ("androidx.paging:paging-compose:1.0.0-alpha18")
 
+      implementation ("androidx.paging:paging-compose:1.0.0-alpha18")
+      // alternatively - without Android dependencies for tests
+      testImplementation ("androidx.paging:paging-common:3.1.1")
+      testImplementation ("androidx.paging:paging-testing:3.2.1")
+      //Coroutines test
+      testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+      testImplementation ("androidx.arch.core:core-testing:2.2.0")
+      testImplementation ("io.mockk:mockk:1.12.2")
+      // Optional -- Robolectric environment
+      testImplementation ("androidx.test:core:1.5.0")
+      // AndroidJUnitRunner and JUnit Rules
+      testImplementation ("androidx.test:runner:1.5.2")
+      testImplementation ("androidx.test:rules:1.5.0")
+      androidTestImplementation ("androidx.test:runner:1.5.2")
+      androidTestImplementation ("androidx.test:rules:1.5.0")
+      // Optional -- Mockito framework
+      testImplementation ("org.mockito:mockito-core:3.9.0")
+      // Optional -- mockito-kotlin
+      testImplementation ("org.mockito.kotlin:mockito-kotlin:3.2.0")
       testImplementation("junit:junit:4.13.2")
+      testImplementation("androidx.test.ext:junit:1.1.5")
+      testImplementation("androidx.test.ext:junit-ktx:1.1.5")
+      testImplementation ("androidx.test:core-ktx:1.5.0")
+      testImplementation ("org.robolectric:robolectric:4.11.1")
       androidTestImplementation("androidx.test.ext:junit:1.1.5")
       androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
       androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
