@@ -25,7 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.alex.challengeapp.domain.model.Movie
@@ -80,7 +79,8 @@ fun HomeScreen(
                   )
             )
             LazyColumn(
-                  modifier = Modifier.weight(1f)
+                  modifier = Modifier.weight(1f),
+                  state = listState
             ) {
                   items(elements) { movie ->
                         if (movie != null) {

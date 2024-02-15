@@ -72,7 +72,7 @@ fun LoginScreen(
             )
             if (state.value.isError) {
                   Text(
-                        text = "Email o contraseña incorrectos",
+                        text = "Usuario o contraseña incorrectos",
                         style = TextStyle(color = Color.Red, fontSize = 12.sp)
                   )
             }

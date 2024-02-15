@@ -18,4 +18,7 @@ interface MovieDao {
 
       @Query("DELETE FROM movie")
       suspend fun deleteAll()
+
+      @Query("SELECT COUNT(*) FROM movie")
+      suspend fun getCount(): Int
 }

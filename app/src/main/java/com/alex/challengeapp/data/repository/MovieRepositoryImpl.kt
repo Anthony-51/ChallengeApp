@@ -23,7 +23,7 @@ class MovieRepositoryImpl @Inject constructor(
       }
 
       override fun getMoviePager(): Pager<Int, MovieEntity> {
-            return  Pager(
+            return Pager(
                   config = PagingConfig(pageSize = 20),
                   remoteMediator = movieMediator,
                   pagingSourceFactory = { movieDao.pagingSource() }

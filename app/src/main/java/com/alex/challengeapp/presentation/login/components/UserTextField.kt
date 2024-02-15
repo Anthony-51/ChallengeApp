@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +23,7 @@ fun UserTextField(
             modifier = modifier,
             value = value,
             onValueChange = onValueChange,
-            label = { Text(text = "Email") },
+            label = { Text(text = "Usuario") },
             colors = OutlinedTextFieldDefaults.colors(
                   unfocusedBorderColor = Color.Gray,
                   unfocusedLabelColor = Color.Gray,
@@ -33,7 +34,8 @@ fun UserTextField(
                   keyboardType = KeyboardType.Text,
                   imeAction = ImeAction.Next
             ),
-            isError = isError
+            isError = isError,
+            textStyle = TextStyle(color = Color.Black)
       )
 }
 
