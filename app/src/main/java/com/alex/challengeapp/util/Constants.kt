@@ -7,4 +7,6 @@ object Constants {
       const val DB_NAME = "movies.db"
       const val PREFERENCES_NAME = "movies_preferences"
       const val PAGE = "current_page"
+      const val UNEXPECTED_ERROR = "An unexpected error occured"
+      const val NETWORK_ERROR = "No se pudo conectar con el servidor. Verifique su conexión"
 }
